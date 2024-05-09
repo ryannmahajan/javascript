@@ -1,10 +1,32 @@
-class PGroup {
-    #store
+const {Group} = require('../06_object/groups')
 
-    #PGroup() {
-        this.#store = []
+class PGroup {
+    static empty = new PGroup(new Group())
+    #group
+
+    constructor(group) {
+        this.#group = group
     }
 
+    add(val) {
+        const ret = Group.from(this.#group);
+        ret.add(val)
+        return new PGroup(ret)
+    }
+
+    delete(val) {
+        const ret = Group.from(this.#group);
+        ret.delete(val)
+        return new PGroup(ret)
+    }
+
+    has(val) {
+        return this.#group.has(val)
+    }
+
+    toString(){
+        return this.#group.toString()
+    }
     
   }
   
